@@ -64,11 +64,28 @@ class VideoListViewController: UITableViewController {
         let l = (cell?.viewWithTag(1001) as? UILabel)!
         l.text = files[indexPath.row]
         
+        
+        
         for i in 0..<7 {
+            let thumbPath = NSTemporaryDirectory() + "/" + filePaths[indexPath.row] + "-" + i.description
             let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
-            imageView.image = self.createThumbnail(filePaths[indexPath.row],location: 1.0 / 7.0 * Double(i))
+            if (NSFileManager.defaultManager().fileExistsAtPath(thumbPath)){
+                // すでにある
+                imageView.image = UIImage(contentsOfFile: thumbPath)
+            }else{
+                // 無いので作る
+                let image = self.createThumbnail(filePaths[indexPath.row],location: 1.0 / 7.0 * Double(i))
+                imageView.image = image
+                let dataSaveImagethumb = UIImageJPEGRepresentation(image, 1.0)
+                
+                do{
+                    try dataSaveImagethumb?.writeToFile(thumbPath, options: NSDataWritingOptions.DataWritingAtomic)
+                }catch{
+                    print("dataSaveImagethumbError")
+                }
+            }
+            
         }
-
         
         return cell!
     }
@@ -87,7 +104,7 @@ class VideoListViewController: UITableViewController {
             let image = UIImage(CGImage: hafwatImage)
             return image
         }catch{
-            print("Error")
+            print("createThumbnailError")
             return UIImage()
         }
     }
