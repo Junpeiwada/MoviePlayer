@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EE95CB791D742FD800A465D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95CB781D742FD800A465D7 /* AppDelegate.swift */; };
-		EE95CB7B1D742FD800A465D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95CB7A1D742FD800A465D7 /* ViewController.swift */; };
+		EE95CB7B1D742FD800A465D7 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95CB7A1D742FD800A465D7 /* VideoListViewController.swift */; };
 		EE95CB7E1D742FD800A465D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE95CB7C1D742FD800A465D7 /* Main.storyboard */; };
 		EE95CB801D742FD800A465D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE95CB7F1D742FD800A465D7 /* Assets.xcassets */; };
 		EE95CB831D742FD800A465D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE95CB811D742FD800A465D7 /* LaunchScreen.storyboard */; };
@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		EE95CB751D742FD800A465D7 /* MoviePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE95CB781D742FD800A465D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EE95CB7A1D742FD800A465D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EE95CB7A1D742FD800A465D7 /* VideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
 		EE95CB7D1D742FD800A465D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE95CB7F1D742FD800A465D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE95CB821D742FD800A465D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				EE95CB781D742FD800A465D7 /* AppDelegate.swift */,
-				EE95CB7A1D742FD800A465D7 /* ViewController.swift */,
+				EE95CB7A1D742FD800A465D7 /* VideoListViewController.swift */,
 				EE95CB8A1D743CEE00A465D7 /* VideoPlayerVC.swift */,
 				EE95CB7C1D742FD800A465D7 /* Main.storyboard */,
 				EE95CB7F1D742FD800A465D7 /* Assets.xcassets */,
@@ -138,7 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE95CB7B1D742FD800A465D7 /* ViewController.swift in Sources */,
+				EE95CB7B1D742FD800A465D7 /* VideoListViewController.swift in Sources */,
 				EE95CB791D742FD800A465D7 /* AppDelegate.swift in Sources */,
 				EE95CB8B1D743CEE00A465D7 /* VideoPlayerVC.swift in Sources */,
 			);
@@ -292,6 +292,7 @@
 				EE95CB891D742FD800A465D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

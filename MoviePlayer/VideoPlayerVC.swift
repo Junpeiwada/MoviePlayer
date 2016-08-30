@@ -12,11 +12,14 @@ import AVFoundation
 class VideoPlayerVC:  AVPlayerViewController{
     var FilePath:String = ""
     override func viewDidLoad() {
-        let url = NSURL(fileURLWithPath: self.FilePath)
-        let playerItem = AVPlayerItem(URL: url)
+        super.viewDidLoad()
         
-        let player = AVPlayer(playerItem: playerItem)
-        player.play()
+        let url = NSURL(fileURLWithPath: self.FilePath)
+        let asset = AVURLAsset(URL: url)
+        let item = AVPlayerItem(asset: asset)
+        self.player = AVPlayer(playerItem: item)
+        
+        self.player!.play()
 
     }
 }

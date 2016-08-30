@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ViewController: UITableViewController {
+class VideoListViewController: UITableViewController {
     var filePaths:[String] = []
     var files:[String] = []
 
@@ -18,12 +18,15 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         let direcs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let document = direcs[0]
+        
+        print(document)
+        
         do{
             let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(document)
             for item:String in contents{
                 print(item)
                 files.append(item)
-                filePaths.append(document + item)
+                filePaths.append(document + "/" + item)
             }
         }catch{
             
@@ -54,7 +57,7 @@ class ViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let player = self.storyboard?.instantiateViewControllerWithIdentifier("Vplayer") as! VideoPlayerVC
         player.FilePath = filePaths[indexPath.row]
-        self.navigationController?.pushViewController(player, animated: true)
+        self.presentViewController(player, animated: true, completion: nil)
     }
 
 }

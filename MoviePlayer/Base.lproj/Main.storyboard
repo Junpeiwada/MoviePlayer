@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Video List View Controller-->
         <scene sceneID="sV6-Fl-v1o">
             <objects>
-                <tableViewController id="07V-y4-sZy" customClass="ViewController" customModule="MoviePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="07V-y4-sZy" customClass="VideoListViewController" customModule="MoviePlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" id="XJQ-ON-fEH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
