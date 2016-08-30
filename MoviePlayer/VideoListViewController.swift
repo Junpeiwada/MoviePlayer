@@ -67,29 +67,28 @@ class VideoListViewController: UITableViewController {
         
         
         for i in 0..<7 {
-            let thumbPath = NSTemporaryDirectory() + "/" + filePaths[indexPath.row] + "-" + i.description
+            let thumbPath = NSTemporaryDirectory() + "/" + files[indexPath.row] + "-" + i.description
             let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
             if (NSFileManager.defaultManager().fileExistsAtPath(thumbPath)){
                 // すでにある
                 imageView.image = UIImage(contentsOfFile: thumbPath)
             }else{
                 // 無いので作る
-                let image = self.createThumbnail(filePaths[indexPath.row],location: 1.0 / 7.0 * Double(i))
+                let image = self.createThumbnail(filePaths[indexPath.row],location: 1.0 / (7.0 + 1) * Double(i + 1))
                 imageView.image = image
                 let dataSaveImagethumb = UIImageJPEGRepresentation(image, 1.0)
                 
-                do{
-                    try dataSaveImagethumb?.writeToFile(thumbPath, options: NSDataWritingOptions.DataWritingAtomic)
-                }catch{
+                let res = dataSaveImagethumb?.writeToFile(thumbPath, atomically: true)
+                if (res == false){
                     print("dataSaveImagethumbError")
                 }
             }
-            
         }
         
         return cell!
     }
     
+    // 再生時刻の割合を指定してサムネイルを作る
     func createThumbnail(path:String,location:Double) -> UIImage{
         let url = NSURL(fileURLWithPath:path)
         let asset = AVURLAsset(URL: url)
