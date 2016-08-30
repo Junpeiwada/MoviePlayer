@@ -14,6 +14,7 @@ import AVFoundation
 class VideoListViewController: UITableViewController {
     var filePaths:[String] = []
     var files:[String] = []
+    var thumbs: Dictionary<String,UIImage> = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +24,12 @@ class VideoListViewController: UITableViewController {
         let direcs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let document = direcs[0]
         
-        print(document)
-        
         files.removeAll()
         filePaths.removeAll()
         
         do{
             let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(document)
             for item:String in contents{
-                print(item)
                 files.append(item)
                 filePaths.append(document + "/" + item)
             }
@@ -66,22 +64,28 @@ class VideoListViewController: UITableViewController {
         
         
         
-        for i in 0..<7 {
+        for i in 0..<8 {
             let thumbPath = NSTemporaryDirectory() + "/" + files[indexPath.row] + "-" + i.description
             let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
-            if (NSFileManager.defaultManager().fileExistsAtPath(thumbPath)){
-                // すでにある
-                imageView.image = UIImage(contentsOfFile: thumbPath)
+            
+            if (thumbs.keys.contains(thumbPath)){
+                imageView.image = thumbs[thumbPath]
             }else{
-                // 無いので作る
-                let image = self.createThumbnail(filePaths[indexPath.row],location: 1.0 / (7.0 + 1) * Double(i + 1))
-                imageView.image = image
-                let dataSaveImagethumb = UIImageJPEGRepresentation(image, 1.0)
-                
-                let res = dataSaveImagethumb?.writeToFile(thumbPath, atomically: true)
-                if (res == false){
-                    print("dataSaveImagethumbError")
+                if (NSFileManager.defaultManager().fileExistsAtPath(thumbPath)){
+                    // すでにある
+                    imageView.image = UIImage(contentsOfFile:thumbPath)
+                }else{
+                    // 無いので作る
+                    let image = self.createThumbnail(self.filePaths[indexPath.row],location: 1.0 / (8.0 + 1) * Double(i + 1))
+                    imageView.image = image
+                    let dataSaveImagethumb = UIImageJPEGRepresentation(image, 1.0)
+                    
+                    let res = dataSaveImagethumb?.writeToFile(thumbPath, atomically: true)
+                    if (res == false){
+                        print("dataSaveImagethumbError")
+                    }
                 }
+                self.thumbs[thumbPath] = imageView.image
             }
         }
         
@@ -113,7 +117,20 @@ class VideoListViewController: UITableViewController {
         let player = self.storyboard?.instantiateViewControllerWithIdentifier("Vplayer") as! VideoPlayerVC
         player.FilePath = filePaths[indexPath.row]
         self.presentViewController(player, animated: true, completion: nil)
+        removeTempImage()
     }
 
+    func removeTempImage() {
+        do{
+            let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(NSTemporaryDirectory())
+            for item:String in contents{
+                try NSFileManager.defaultManager().removeItemAtPath(NSTemporaryDirectory() + "/" + item)
+            }
+        }catch{
+            print("error")
+        }
+        
+
+    }
 }
 
