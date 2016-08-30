@@ -17,10 +17,16 @@ class VideoListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func loadFileList(){
         let direcs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let document = direcs[0]
         
         print(document)
+        
+        files.removeAll()
+        filePaths.removeAll()
         
         do{
             let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(document)
@@ -30,9 +36,15 @@ class VideoListViewController: UITableViewController {
                 filePaths.append(document + "/" + item)
             }
         }catch{
-            
+            print("ErrorList")
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.loadFileList()
+        self.tableView.reloadData()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,17 +64,12 @@ class VideoListViewController: UITableViewController {
         let l = (cell?.viewWithTag(1001) as? UILabel)!
         l.text = files[indexPath.row]
         
-        let image1 = (cell?.viewWithTag(10) as? UIImageView)!
-        image1.image = self.createThumbnail(filePaths[indexPath.row],location: 0.1)
+        for i in 0..<7 {
+            let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
+            imageView.image = self.createThumbnail(filePaths[indexPath.row],location: 1.0 / 7.0 * Double(i))
+        }
+
         
-        let image2 = (cell?.viewWithTag(11) as? UIImageView)!
-        image2.image = self.createThumbnail(filePaths[indexPath.row],location: 0.3)
-        
-        let image3 = (cell?.viewWithTag(12) as? UIImageView)!
-        image3.image = self.createThumbnail(filePaths[indexPath.row],location: 0.6)
-        
-        let image4 = (cell?.viewWithTag(13) as? UIImageView)!
-        image4.image = self.createThumbnail(filePaths[indexPath.row],location: 0.85)
         return cell!
     }
     
