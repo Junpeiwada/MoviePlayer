@@ -63,7 +63,7 @@ class VideoListViewController: UITableViewController {
         l.text = files[indexPath.row]
         
         
-        let imageCount = 8
+        let imageCount = 10
         
         for i in 0..<imageCount {
             let thumbPath = NSTemporaryDirectory() + "/" + files[indexPath.row] + "-" + i.description
@@ -97,7 +97,7 @@ class VideoListViewController: UITableViewController {
     
     // 枚数分サムネを作る
     func makeAllThumb(filename:String,filePath:String) {
-        let imageCount = 8
+        let imageCount = 10
         
         // 無いので作る
         for i in 0..<imageCount {
