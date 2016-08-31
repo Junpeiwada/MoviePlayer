@@ -81,7 +81,7 @@ class VideoListViewController: UITableViewController {
                     if (i == 0){
                         print("makeThumbnail")
                         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), {
-                            self.makeAllThumb(self.files[indexPath.row],filePath: self.filePaths[indexPath.row])
+                            self.makeAllThumb(self.files[indexPath.row],filePath: self.filePaths[indexPath.row],rect: imageView.frame)
                             dispatch_sync(dispatch_get_main_queue()) {
                                 tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
                             }
@@ -96,7 +96,7 @@ class VideoListViewController: UITableViewController {
     }
     
     // 枚数分サムネを作る
-    func makeAllThumb(filename:String,filePath:String) {
+    func makeAllThumb(filename:String,filePath:String,rect:CGRect) {
         let imageCount = 10
         
         // 無いので作る
@@ -104,7 +104,7 @@ class VideoListViewController: UITableViewController {
             let makeThumbPath = NSTemporaryDirectory() + "/" + filename + "-" + i.description
             let percent = (1.0 / Double(imageCount + 1)) * Double(i + 1)
             
-            let image = self.createThumbnail(filePath,location:percent)
+            let image = self.createThumbnail(filePath,location:percent,rect:rect)
             
             let dataSaveImagethumb = UIImageJPEGRepresentation(image, 1.0)
             
@@ -118,7 +118,7 @@ class VideoListViewController: UITableViewController {
     }
     
     // 再生時刻の割合を指定してサムネイルを作る
-    func createThumbnail(path:String,location:Double) -> UIImage{
+    func createThumbnail(path:String,location:Double,rect:CGRect) -> UIImage{
         let url = NSURL(fileURLWithPath:path)
         let asset = AVURLAsset(URL: url)
         asset.tracksWithMediaCharacteristic(AVMediaTypeVideo)
@@ -130,7 +130,7 @@ class VideoListViewController: UITableViewController {
         do{
             let hafwatImage = try imageGen.copyCGImageAtTime(midpoint, actualTime: nil)
             let image = UIImage(CGImage: hafwatImage)
-            let miniImage = makeSmallImage(image)
+            let miniImage = makeSmallImage(image,rect:rect )
             return miniImage
         }catch{
             print("createThumbnailError")
@@ -138,8 +138,9 @@ class VideoListViewController: UITableViewController {
         }
     }
 
-    func makeSmallImage(orgImg:UIImage) -> UIImage{
-        let resizedSize = CGSizeMake(orgImg.size.width * 0.2,orgImg.size.height * 0.2);
+    func makeSmallImage(orgImg:UIImage,rect:CGRect) -> UIImage{
+        let fitSize = AVMakeRectWithAspectRatioInsideRect(orgImg.size, rect)
+        let resizedSize = CGSizeMake(fitSize.size.width * 2 , fitSize.size.height * 2 )
         UIGraphicsBeginImageContext(resizedSize);
         orgImg.drawInRect(CGRectMake(0, 0, resizedSize.width, resizedSize.height))
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -152,7 +153,6 @@ class VideoListViewController: UITableViewController {
         let player = self.storyboard?.instantiateViewControllerWithIdentifier("Vplayer") as! VideoPlayerVC
         player.FilePath = filePaths[indexPath.row]
         self.presentViewController(player, animated: true, completion: nil)
-        
     }
 
     func removeTempImage() {

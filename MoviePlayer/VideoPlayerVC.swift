@@ -22,4 +22,14 @@ class VideoPlayerVC:  AVPlayerViewController{
         self.player!.play()
 
     }
+    
+    // 向きを横向きにする
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        let orientation: UIInterfaceOrientationMask = UIInterfaceOrientationMask.LandscapeRight
+        return orientation
+    }
+    
+    override func shouldAutorotate() -> Bool{
+        return true
+    }
 }
