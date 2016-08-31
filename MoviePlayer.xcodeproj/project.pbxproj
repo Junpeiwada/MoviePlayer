@@ -98,12 +98,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE95CB871D742FD800A465D7 /* Build configuration list for PBXNativeTarget "MoviePlayer" */;
 			buildPhases = (
+				5AA7360E7D66F9DBAB7B8E0D /* [CP] Check Pods Manifest.lock */,
 				9402D736986E7BBBF5E23015 /* [CP] Check Pods Manifest.lock */,
 				EE95CB711D742FD800A465D7 /* Sources */,
 				EE95CB721D742FD800A465D7 /* Frameworks */,
 				EE95CB731D742FD800A465D7 /* Resources */,
 				C80DD4E172187F3D8DF557C4 /* [CP] Embed Pods Frameworks */,
 				AE9E858659811B151721A2D2 /* [CP] Copy Pods Resources */,
+				994A1FEE78BFB2CEBEA24458 /* 📦 Embed Pods Frameworks */,
+				273FB675E85B1CD18C148B38 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,6 +164,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		273FB675E85B1CD18C148B38 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoviePlayer/Pods-MoviePlayer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5AA7360E7D66F9DBAB7B8E0D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		9402D736986E7BBBF5E23015 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,6 +207,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		994A1FEE78BFB2CEBEA24458 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoviePlayer/Pods-MoviePlayer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AE9E858659811B151721A2D2 /* [CP] Copy Pods Resources */ = {

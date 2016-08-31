@@ -63,8 +63,9 @@ class VideoListViewController: UITableViewController {
         l.text = files[indexPath.row]
         
         
+        let imageCount = 8
         
-        for i in 0..<8 {
+        for i in 0..<imageCount {
             let thumbPath = NSTemporaryDirectory() + "/" + files[indexPath.row] + "-" + i.description
             let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
             
@@ -75,21 +76,45 @@ class VideoListViewController: UITableViewController {
                     // すでにある
                     imageView.image = UIImage(contentsOfFile:thumbPath)
                 }else{
-                    // 無いので作る
-                    let image = self.createThumbnail(self.filePaths[indexPath.row],location: 1.0 / (8.0 + 1) * Double(i + 1))
-                    imageView.image = image
-                    let dataSaveImagethumb = UIImageJPEGRepresentation(image, 1.0)
+                    imageView.image = nil
                     
-                    let res = dataSaveImagethumb?.writeToFile(thumbPath, atomically: true)
-                    if (res == false){
-                        print("dataSaveImagethumbError")
+                    if (i == 0){
+                        print("makeThumbnail")
+                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), {
+                            self.makeAllThumb(self.files[indexPath.row],filePath: self.filePaths[indexPath.row])
+                            dispatch_sync(dispatch_get_main_queue()) {
+                                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                            }
+                        })
                     }
                 }
-                self.thumbs[thumbPath] = imageView.image
+                
             }
         }
         
         return cell!
+    }
+    
+    // 枚数分サムネを作る
+    func makeAllThumb(filename:String,filePath:String) {
+        let imageCount = 8
+        
+        // 無いので作る
+        for i in 0..<imageCount {
+            let makeThumbPath = NSTemporaryDirectory() + "/" + filename + "-" + i.description
+            let percent = (1.0 / Double(imageCount + 1)) * Double(i + 1)
+            
+            let image = self.createThumbnail(filePath,location:percent)
+            
+            let dataSaveImagethumb = UIImageJPEGRepresentation(image, 1.0)
+            
+            let res = dataSaveImagethumb?.writeToFile(makeThumbPath, atomically: true)
+            if (res == false){
+                print("dataSaveImagethumbError")
+            }
+            
+            self.thumbs[makeThumbPath] = image
+        }
     }
     
     // 再生時刻の割合を指定してサムネイルを作る
@@ -105,11 +130,21 @@ class VideoListViewController: UITableViewController {
         do{
             let hafwatImage = try imageGen.copyCGImageAtTime(midpoint, actualTime: nil)
             let image = UIImage(CGImage: hafwatImage)
-            return image
+            let miniImage = makeSmallImage(image)
+            return miniImage
         }catch{
             print("createThumbnailError")
             return UIImage()
         }
+    }
+
+    func makeSmallImage(orgImg:UIImage) -> UIImage{
+        let resizedSize = CGSizeMake(orgImg.size.width * 0.2,orgImg.size.height * 0.2);
+        UIGraphicsBeginImageContext(resizedSize);
+        orgImg.drawInRect(CGRectMake(0, 0, resizedSize.width, resizedSize.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return resizedImage
     }
     
     
@@ -117,11 +152,12 @@ class VideoListViewController: UITableViewController {
         let player = self.storyboard?.instantiateViewControllerWithIdentifier("Vplayer") as! VideoPlayerVC
         player.FilePath = filePaths[indexPath.row]
         self.presentViewController(player, animated: true, completion: nil)
-        removeTempImage()
+        
     }
 
     func removeTempImage() {
         do{
+            thumbs.removeAll()
             let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(NSTemporaryDirectory())
             for item:String in contents{
                 try NSFileManager.defaultManager().removeItemAtPath(NSTemporaryDirectory() + "/" + item)
@@ -131,6 +167,11 @@ class VideoListViewController: UITableViewController {
         }
         
 
+    }
+    
+    @IBAction func clearTemp(sender: AnyObject) {
+        self.removeTempImage()
+        self.tableView.reloadData()
     }
 }
 
