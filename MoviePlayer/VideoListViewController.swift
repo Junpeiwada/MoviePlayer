@@ -64,36 +64,48 @@ class VideoListViewController: UITableViewController {
         
         
         let imageCount = 10
+        var thumbExist = true
         
+        // サムネがあるかどうかを調べる
         for i in 0..<imageCount {
             let thumbPath = NSTemporaryDirectory() + "/" + files[indexPath.row] + "-" + i.description
-            let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
-            
-            if (thumbs.keys.contains(thumbPath)){
-                imageView.image = thumbs[thumbPath]
-            }else{
-                if (NSFileManager.defaultManager().fileExistsAtPath(thumbPath)){
-                    // すでにある
-                    imageView.image = UIImage(contentsOfFile:thumbPath)
-                }else{
-                    imageView.image = nil
-                    
-                    if (i == 0){
-                        print("makeThumbnail")
-                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), {
-                            self.makeAllThumb(self.files[indexPath.row],filePath: self.filePaths[indexPath.row],rect: imageView.frame)
-                            dispatch_sync(dispatch_get_main_queue()) {
-                                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-                            }
-                        })
-                    }
+            if (!thumbs.keys.contains(thumbPath)){
+                if (!NSFileManager.defaultManager().fileExistsAtPath(thumbPath)){
+                    thumbExist = false
                 }
-                
             }
         }
         
+        if (!thumbExist){
+            // サムネが存在しないのがあるから、サムネを作る
+            print("makeThumbnail")
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), {
+                let imageView = (cell?.viewWithTag(10) as? UIImageView)!
+                self.makeAllThumb(self.files[indexPath.row],filePath: self.filePaths[indexPath.row],rect: imageView.frame)
+                dispatch_async(dispatch_get_main_queue()) {
+                    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                }
+            })
+        }else{
+            for i in 0..<imageCount {
+                let thumbPath = NSTemporaryDirectory() + "/" + files[indexPath.row] + "-" + i.description
+                let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
+                if (thumbs.keys.contains(thumbPath)){
+                    imageView.image = thumbs[thumbPath]
+                }else{
+                    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), {
+                        let imageFormFile = UIImage(contentsOfFile:thumbPath)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            imageView.image = imageFormFile
+                        }
+                    })
+                }
+            }
+        }
         return cell!
     }
+    
+    
     
     // 枚数分サムネを作る
     func makeAllThumb(filename:String,filePath:String,rect:CGRect) {
