@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import PAPasscode
+//import SVProgressHUD
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate , PAPasscodeViewControllerDelegate {
 
     var window: UIWindow?
+    var isPassCodeViewShown = false
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -35,8 +38,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+//        let usePasscode = NSUserDefaults.standardUserDefaults().boolForKey("useLock")
+//        if (usePasscode){
+//            self.isPassCodeViewShown = true
+//            let passcode = self.loadPassword()
+//            if (passcode != nil){
+//                // パスコードの画面を表示する
+//                let passcodeViewController = PAPasscodeViewController.init(forAction: PasscodeActionEnter)
+//                passcodeViewController.delegate = self
+//                passcodeViewController.passcode = passcode
+//                
+//                let navi = UINavigationController.init(rootViewController: passcodeViewController)
+//
+//            }else{
+//                // 新規に設定
+//                let passcodeViewController = PAPasscodeViewController.init(forAction: PasscodeActionSet)
+//                passcodeViewController.delegate = self
+//                
+//                let navi = UINavigationController.init(rootViewController: passcodeViewController)
+//            }
+//        }else{
+//
+//        }
     }
-
+    
+    func savePassword(password : String){
+        NSUserDefaults.standardUserDefaults().setObject(password, forKey: "JPPhotoViewerP")
+    }
+    func loadPassword() -> String? {
+        return NSUserDefaults.standardUserDefaults().objectForKey("JPPhotoViewerP") as? String
+    }
+    
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
