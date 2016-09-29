@@ -15,7 +15,7 @@ class VideoPlayerVC:  AVPlayerViewController{
         super.viewDidLoad()
         
         let url = NSURL(fileURLWithPath: self.FilePath)
-        let asset = AVURLAsset(URL: url)
+        let asset = AVURLAsset(url: url as URL)
         let item = AVPlayerItem(asset: asset)
         self.player = AVPlayer(playerItem: item)
         
@@ -23,13 +23,12 @@ class VideoPlayerVC:  AVPlayerViewController{
 
     }
     
-    // 向きを横向きにする
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        let orientation: UIInterfaceOrientationMask = UIInterfaceOrientationMask.LandscapeRight
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        let orientation: UIInterfaceOrientationMask = UIInterfaceOrientationMask.landscapeRight
         return orientation
     }
     
-    override func shouldAutorotate() -> Bool{
+    override var shouldAutorotate: Bool{
         return true
     }
 }
