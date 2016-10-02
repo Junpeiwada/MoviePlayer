@@ -175,23 +175,5 @@ class VideoListViewController: UITableViewController {
         self.present(player, animated: true, completion: nil)
     }
 
-    func removeTempImage() {
-        do{
-            thumbs.removeAll()
-            let contents = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
-            for item:String in contents{
-                try FileManager.default.removeItem(atPath:NSTemporaryDirectory() + "/" + item)
-            }
-        }catch{
-            print("error")
-        }
-        
-
-    }
-    
-    @IBAction func clearTe(_ sender: AnyObject) {
-        self.removeTempImage()
-        self.tableView.reloadData()
-    }
 }
 

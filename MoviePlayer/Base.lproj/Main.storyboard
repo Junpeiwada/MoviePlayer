@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="119"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hqT-R3-cQl" id="O1a-Vk-iOt">
-                                    <frame key="frameInset" width="375" height="118"/>
+                                    <frame key="frameInset" width="375" height="118.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FileName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xtA-2E-b6r">
@@ -30,7 +30,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" id="8w2-tl-yU5">
-                                            <frame key="frameInset" minX="57.14%" minY="84.72%" width="305" height="82"/>
+                                            <frame key="frameInset" minX="57.14%" minY="83.56%" width="305" height="82"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="sAE-bE-UGt">
@@ -87,9 +87,9 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="qRs-WC-ZiZ">
-                        <barButtonItem key="rightBarButtonItem" title="Clear" id="A2E-Lb-G8y">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="wiN-eG-31O">
                             <connections>
-                                <action selector="clearTe:" destination="07V-y4-sZy" id="CmV-u7-1VT"/>
+                                <segue destination="Fcs-Xl-sqA" kind="push" id="V80-bT-IEE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -98,6 +98,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DXf-GF-9EW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="696.5" y="389.5"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="5bR-qQ-EhG">
+            <objects>
+                <viewController id="Fcs-Xl-sqA" customClass="SettingsViewController" customModule="MoviePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fwS-b6-O4d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Xfg-0m-fMf">
+                                <frame key="frameInset" minX="179" minY="108" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="rotateChanged:" destination="Fcs-Xl-sqA" eventType="valueChanged" id="RBh-1d-rvu"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="横向きにする" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hku-ir-F6g">
+                                <frame key="frameInset" minX="45" minY="118" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dKi-kq-nFc">
+                                <frame key="frameInset" minX="31" minY="182" width="154" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="キャッシュをクリア"/>
+                                <connections>
+                                    <action selector="clearCache:" destination="Fcs-Xl-sqA" eventType="touchUpInside" id="IgR-cJ-W4Y"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lgG-uM-Gzg"/>
+                    <connections>
+                        <outlet property="rotateSwitch" destination="Xfg-0m-fMf" id="Bjq-67-gvx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YI9-jO-COA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1137.5" y="1227.5"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="8wH-7s-V8x">

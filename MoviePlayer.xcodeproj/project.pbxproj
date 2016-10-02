@@ -14,6 +14,7 @@
 		EE95CB801D742FD800A465D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE95CB7F1D742FD800A465D7 /* Assets.xcassets */; };
 		EE95CB831D742FD800A465D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE95CB811D742FD800A465D7 /* LaunchScreen.storyboard */; };
 		EE95CB8B1D743CEE00A465D7 /* VideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95CB8A1D743CEE00A465D7 /* VideoPlayerVC.swift */; };
+		EEF66C581DA0E40E005D8A78 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF66C571DA0E40E005D8A78 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		EE95CB821D742FD800A465D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE95CB841D742FD800A465D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE95CB8A1D743CEE00A465D7 /* VideoPlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
+		EEF66C571DA0E40E005D8A78 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F2EE165B63357B76C7BB63FE /* Pods-MoviePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoviePlayer/Pods-MoviePlayer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				EE95CB7F1D742FD800A465D7 /* Assets.xcassets */,
 				EE95CB811D742FD800A465D7 /* LaunchScreen.storyboard */,
 				EE95CB841D742FD800A465D7 /* Info.plist */,
+				EEF66C571DA0E40E005D8A78 /* SettingsViewController.swift */,
 			);
 			path = MoviePlayer;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				EE95CB7B1D742FD800A465D7 /* VideoListViewController.swift in Sources */,
 				EE95CB791D742FD800A465D7 /* AppDelegate.swift in Sources */,
 				EE95CB8B1D743CEE00A465D7 /* VideoPlayerVC.swift in Sources */,
+				EEF66C581DA0E40E005D8A78 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
