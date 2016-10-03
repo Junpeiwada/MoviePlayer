@@ -81,9 +81,14 @@ class VideoListViewController: UITableViewController {
             }
         }
         
+        let activity = (cell?.viewWithTag(100) as? UIActivityIndicatorView)!
+        
+        
         if (!thumbExist){
             // サムネが存在しないのがあるから、サムネを作る
             print("makeThumbnail")
+            
+            activity.startAnimating()
             
             for i in 0..<imageCount {
                 let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
@@ -99,6 +104,8 @@ class VideoListViewController: UITableViewController {
             }
 
         }else{
+            activity.stopAnimating()
+            
             for i in 0..<imageCount {
                 let thumbPath = NSTemporaryDirectory() + "/" + files[indexPath.row] + "-" + i.description
                 let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
