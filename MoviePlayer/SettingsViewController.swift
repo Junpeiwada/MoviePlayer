@@ -11,6 +11,7 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var rotateSwitch: UISwitch!
+    @IBOutlet weak var lockSwitch: UISwitch!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +25,7 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.rotateSwitch.isOn = UserDefaults.standard.bool(forKey: "Horizontal")
+        self.lockSwitch.isOn = UserDefaults.standard.bool(forKey: "useLock")
     }
     
     @IBAction func rotateChanged(_ sender: UISwitch) {
@@ -31,6 +33,11 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func clearCache(_ sender: UIButton) {
+        self.removeTempImage()
+    }
+
+    @IBAction func lockChanged(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "useLock")
     }
     
     func removeTempImage() {

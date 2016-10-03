@@ -39,6 +39,12 @@ class VideoListViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let app : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        if (app.isPassCodeViewShown){
+            self.tableView.isHidden = true
+        }else{
+            self.tableView.isHidden = false
+        }
         self.loadFileList()
         self.tableView.reloadData()
     }
