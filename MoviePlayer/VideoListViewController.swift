@@ -123,6 +123,24 @@ class VideoListViewController: UITableViewController {
         }
         return cell!
     }
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        // 削除ボタンをだす
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除"){ (action, index) -> Void in
+            
+            let targetPath = self.filePaths[indexPath.row]
+            do {
+                  try FileManager.default.removeItem(atPath: targetPath)
+            }catch{
+                print("削除に失敗")
+                return
+            }
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        deleteButton.backgroundColor = UIColor.red
+        
+        return [deleteButton]
+    }
 
     
     
