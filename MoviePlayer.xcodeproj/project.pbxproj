@@ -92,11 +92,11 @@
 				EE95CB7A1D742FD800A465D7 /* VideoListViewController.swift */,
 				EE95CB8A1D743CEE00A465D7 /* VideoPlayerVC.swift */,
 				EE95CB7C1D742FD800A465D7 /* Main.storyboard */,
-				EE95CB7F1D742FD800A465D7 /* Assets.xcassets */,
 				EE95CB811D742FD800A465D7 /* LaunchScreen.storyboard */,
 				EE95CB841D742FD800A465D7 /* Info.plist */,
 				EEF66C571DA0E40E005D8A78 /* SettingsViewController.swift */,
 				EE625E2A1DA2124900E85E8E /* MoviePlayer-Bridging-Header.h */,
+				EE95CB7F1D742FD800A465D7 /* Assets.xcassets */,
 			);
 			path = MoviePlayer;
 			sourceTree = "<group>";

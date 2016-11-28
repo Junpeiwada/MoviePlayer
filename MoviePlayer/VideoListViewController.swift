@@ -64,8 +64,19 @@ class VideoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "test")
-        let l = (cell?.viewWithTag(1001) as? UILabel)!
-        l.text = files[indexPath.row]
+        
+        // ファイル名
+        let filenameLabel = (cell?.viewWithTag(1001) as? UILabel)!
+        filenameLabel.text = files[indexPath.row]
+        
+        // 時間
+        let lengthLabel = (cell?.viewWithTag(1010) as? UILabel)!
+        DispatchQueue.global().async {
+            let timeString = self.fileDuration(path: self.filePaths[indexPath.row])
+            DispatchQueue.main.async {
+                lengthLabel.text = timeString
+            }
+        }
         
         
         let imageCount = 10
@@ -81,6 +92,8 @@ class VideoListViewController: UITableViewController {
             }
         }
         
+        
+        // ぐるぐるをセルから持ってくる
         let activity = (cell?.viewWithTag(100) as? UIActivityIndicatorView)!
         
         
@@ -166,6 +179,30 @@ class VideoListViewController: UITableViewController {
             
             self.thumbs[makeThumbPath] = image
         }
+    }
+    
+    // 指定されたパスの動画の長さをいい感じの文字列にして返す
+    func fileDuration(path:String) -> String{
+        let url = NSURL(fileURLWithPath:path)
+        let asset = AVURLAsset(url: url as URL)
+        asset.tracks(withMediaCharacteristic: AVMediaTypeVideo)
+        
+        let videoDurationSeconds = CMTimeGetSeconds(asset.duration)
+        
+        let dHours = Int(floor(videoDurationSeconds / 3600))
+        let dMinutes = Int(floor(videoDurationSeconds.truncatingRemainder(dividingBy: 3600) / 60))
+        let dSeconds = Int(floor(videoDurationSeconds.truncatingRemainder(dividingBy: 3600).truncatingRemainder(dividingBy: 60)))
+        
+        
+        if (dHours > 0){
+            let str = String(format:"%02d:%02d:%02d", dHours, dMinutes, dSeconds)
+            return str
+        }else{
+            let str = String(format:"%02d:%02d", dMinutes, dSeconds)
+            return str
+        }
+        
+        
     }
     
     // 再生時刻の割合を指定してサムネイルを作る
