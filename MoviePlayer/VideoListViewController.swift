@@ -30,8 +30,12 @@ class VideoListViewController: UITableViewController {
         do{
             let contents = try FileManager.default.contentsOfDirectory(atPath:document)
             for item:String in contents{
-                files.append(item)
-                filePaths.append(document + "/" + item)
+                var isDirectory : ObjCBool = false
+                FileManager.default.fileExists(atPath: document + "/" + item, isDirectory: &isDirectory)
+                if (!isDirectory.boolValue){
+                    files.append(item)
+                    filePaths.append(document + "/" + item)
+                }
             }
         }catch{
             print("ErrorList")
