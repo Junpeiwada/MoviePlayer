@@ -42,10 +42,13 @@ class SettingsViewController: UIViewController {
     
     func removeTempImage() {
         do{
-//            thumbs.removeAll()
-            let contents = try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory())
+            let direcs = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+            let document = direcs[0]
+            let thumbPath = document + "/thumb"
+            
+            let contents = try FileManager.default.contentsOfDirectory(atPath: thumbPath)
             for item:String in contents{
-                try FileManager.default.removeItem(atPath:NSTemporaryDirectory() + "/" + item)
+                try FileManager.default.removeItem(atPath:thumbPath + "/" + item)
             }
         }catch{
             print("error")

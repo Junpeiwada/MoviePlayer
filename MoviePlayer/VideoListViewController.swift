@@ -84,7 +84,7 @@ class VideoListViewController: UITableViewController {
         
         // サムネがあるかどうかを調べる
         for i in 0..<imageCount {
-            let thumbPath = NSTemporaryDirectory() + "/" + files[indexPath.row] + "-" + i.description
+            let thumbPath = self.thumbImagePath(filePath: files[indexPath.row], index: i)
             if (!thumbs.keys.contains(thumbPath)){
                 if (!FileManager.default.fileExists(atPath: thumbPath)){
                     thumbExist = false
@@ -120,7 +120,7 @@ class VideoListViewController: UITableViewController {
             activity.stopAnimating()
             
             for i in 0..<imageCount {
-                let thumbPath = NSTemporaryDirectory() + "/" + files[indexPath.row] + "-" + i.description
+                let thumbPath = self.thumbImagePath(filePath: files[indexPath.row], index: i)
                 let imageView = (cell?.viewWithTag(10 + i) as? UIImageView)!
                 if (thumbs.keys.contains(thumbPath)){
                     imageView.image = thumbs[thumbPath]
@@ -163,7 +163,7 @@ class VideoListViewController: UITableViewController {
         
         // 無いので作る
         for i in 0..<imageCount {
-            let makeThumbPath = NSTemporaryDirectory() + "/" + filename + "-" + i.description
+            let makeThumbPath = self.thumbImagePath(filePath: filename, index: i)
             let percent = (1.0 / Double(imageCount + 1)) * Double(i + 1)
             
             let image = self.createThumbnail(path: filePath,location:percent,rect:rect)
@@ -225,7 +225,21 @@ class VideoListViewController: UITableViewController {
             return UIImage()
         }
     }
-
+    
+    func thumbImagePath(filePath:String,index:Int)-> String{
+        let direcs = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let document = direcs[0]
+        let thumbPath = document + "/thumb/" + filePath + "-" + index.description
+        if (!FileManager.default.fileExists(atPath: document + "/thumb")){
+            do {
+                try FileManager.default.createDirectory(atPath: document + "/thumb", withIntermediateDirectories: false, attributes: nil)
+            }catch{
+                print("サムネディレクトリの生成に失敗")
+            }
+        }
+        return thumbPath
+    }
+    
     func makeSmallImage(orgImg:UIImage,rect:CGRect) -> UIImage{
         let fitSize = AVMakeRect(aspectRatio: orgImg.size, insideRect: rect)
         let resizedSize = CGSize(width:fitSize.size.width * 2 , height:fitSize.size.height * 2 )
