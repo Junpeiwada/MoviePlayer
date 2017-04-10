@@ -11,13 +11,61 @@ import AVKit
 import AVFoundation
 
 
-class VideoListViewController: UITableViewController {
-    var filePaths:[String] = []
-    var files:[String] = []
+class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate {
+    var filePaths:[String] = [] // パスも含めて
+    var files:[String] = [] // ファイル名だけ
     var thumbs: Dictionary<String,UIImage> = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(VideoListViewController.cellLongPressed(_:)))
+        longPressRecognizer.delegate = self
+        tableView.addGestureRecognizer(longPressRecognizer)
+    }
+    
+    // 長押し判定
+    func cellLongPressed(_ sender: UITapGestureRecognizer){
+        let point = sender.location(in: self.tableView)
+        let indexPath = self.tableView.indexPathForRow(at:point)
+        
+        if indexPath != nil {
+            if sender.state == UIGestureRecognizerState.began  {
+                // 長押しされた場合の処
+                print("長押しされたcellのindexPath:\(String(describing: indexPath?.row))")
+                
+                
+                let filename = files[(indexPath?.row)!]
+                let filePath = filePaths[(indexPath?.row)!]
+                
+                let alert = UIAlertController(title: "名前変更", message: "ファイル名を入力", preferredStyle: .alert)
+                let saveAction = UIAlertAction(title: "Done", style: .default) { (action:UIAlertAction!) -> Void in
+                    
+                    // 入力したテキストをコンソールに表示
+                    let textField = alert.textFields![0] as UITextField
+                    
+                    let ns = filePath as NSString
+                    let newPath = ns.deletingLastPathComponent + "/" + textField.text! + ".mp4"
+                    
+                    try! FileManager.default.moveItem(atPath: filePath, toPath: newPath)
+                    self.loadFileList()
+                    
+                    self.tableView.reloadData()
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action:UIAlertAction!) -> Void in
+                }
+                
+                // UIAlertControllerにtextFieldを追加
+                alert.addTextField(configurationHandler: {(textField: UITextField!) -> Void in
+                    textField.placeholder = filename
+                })
+                alert.addAction(saveAction)
+                alert.addAction(cancelAction)
+                
+                present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     func loadFileList(){
