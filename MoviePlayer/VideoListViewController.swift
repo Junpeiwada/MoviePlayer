@@ -15,7 +15,7 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
     var filePaths:[String] = [] // パスも含めて
     var files:[String] = [] // ファイル名だけ
     var thumbs: Dictionary<String,UIImage> = [:]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +25,7 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
     }
     
     // 長押し判定
-    func cellLongPressed(_ sender: UITapGestureRecognizer){
+    @objc func cellLongPressed(_ sender: UITapGestureRecognizer){
         let point = sender.location(in: self.tableView)
         let indexPath = self.tableView.indexPathForRow(at:point)
         
@@ -94,8 +94,10 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
         let app : AppDelegate = UIApplication.shared.delegate as! AppDelegate
         if (app.isPassCodeViewShown){
             self.tableView.isHidden = true
+            print("Hide")
         }else{
             self.tableView.isHidden = false
+            print("Show")
         }
         self.loadFileList()
         self.tableView.reloadData()
@@ -237,7 +239,6 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
     func fileDuration(path:String) -> String{
         let url = NSURL(fileURLWithPath:path)
         let asset = AVURLAsset(url: url as URL)
-        asset.tracks(withMediaCharacteristic: AVMediaTypeVideo)
         
         let videoDurationSeconds = CMTimeGetSeconds(asset.duration)
         
@@ -261,8 +262,7 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
     func createThumbnail(path:String,location:Double,rect:CGRect) -> UIImage{
         let url = NSURL(fileURLWithPath:path)
         let asset = AVURLAsset(url: url as URL)
-        asset.tracks(withMediaCharacteristic: AVMediaTypeVideo)
-        
+
         let imageGen = AVAssetImageGenerator(asset: asset)
         let durationSeconds = CMTimeGetSeconds(asset.duration)
        

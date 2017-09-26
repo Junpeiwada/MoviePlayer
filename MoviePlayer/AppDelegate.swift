@@ -15,10 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate , PAPasscodeViewController
 
     var window: UIWindow?
     var isPassCodeViewShown = false
-
-
-    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        let usePasscode = UserDefaults.standard.bool(forKey:"useLock")
+        if (usePasscode){
+            isPassCodeViewShown = true
+        }else{
+            isPassCodeViewShown = false
+        }
         return true
     }
 
@@ -29,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , PAPasscodeViewController
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         self.window?.rootViewController?.dismiss(animated: true, completion: nil)
-
+        
         // 黒いビューを表示して、タスクスイッチャに黒い画面が表示されるようにする
         let blankVC = UIViewController.init()
         blankVC.view.backgroundColor = UIColor.black
@@ -37,12 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate , PAPasscodeViewController
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         
         let usePasscode = UserDefaults.standard.bool(forKey:"useLock")
+        
         if (usePasscode){
             self.isPassCodeViewShown = true
             let passcode = self.loadPassword()
