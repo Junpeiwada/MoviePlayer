@@ -85,6 +85,9 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
                     filePaths.append(document + "/" + item)
                 }
             }
+            
+            files.sort()
+            filePaths.sort()
         }catch{
             print("ErrorList")
         }

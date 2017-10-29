@@ -1,6 +1,6 @@
 PODS:
   - PAPasscode (1.0)
-  - SVProgressHUD (2.2.1)
+  - SVProgressHUD (2.2.2)
 
 DEPENDENCIES:
   - PAPasscode
@@ -8,7 +8,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   PAPasscode: b408fb87c530cad58a554e26482e87dbb14b7bc2
-  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
 
 PODFILE CHECKSUM: 73df3b1fec603fdceba483a15a5c9112ebe34772
 
