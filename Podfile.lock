@@ -1,15 +1,20 @@
 PODS:
   - PAPasscode (1.0)
-  - SVProgressHUD (2.2.2)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - PAPasscode
   - SVProgressHUD
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - PAPasscode
+    - SVProgressHUD
+
 SPEC CHECKSUMS:
   PAPasscode: b408fb87c530cad58a554e26482e87dbb14b7bc2
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
 PODFILE CHECKSUM: 73df3b1fec603fdceba483a15a5c9112ebe34772
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

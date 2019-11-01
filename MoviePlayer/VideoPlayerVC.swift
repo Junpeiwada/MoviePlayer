@@ -26,7 +26,7 @@ class VideoPlayerVC:  AVPlayerViewController{
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
         
         if (UserDefaults.standard.bool(forKey: "Horizontal")){
-            let orientation: UIInterfaceOrientationMask = UIInterfaceOrientationMask.landscape
+            let orientation: UIInterfaceOrientationMask = UIInterfaceOrientationMask.landscapeLeft
             return orientation
         }else{
             let orientation: UIInterfaceOrientationMask = UIInterfaceOrientationMask.all
@@ -37,4 +37,5 @@ class VideoPlayerVC:  AVPlayerViewController{
     override var shouldAutorotate: Bool{
         return true
     }
+    
 }

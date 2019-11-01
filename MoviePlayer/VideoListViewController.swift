@@ -11,7 +11,7 @@ import AVKit
 import AVFoundation
 
 
-class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate {
+class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate,AVPlayerViewControllerDelegate {
     var filePaths:[String] = [] // パスも含めて
     var files:[String] = [] // ファイル名だけ
     var thumbs: Dictionary<String,UIImage> = [:]
@@ -30,7 +30,7 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
         let indexPath = self.tableView.indexPathForRow(at:point)
         
         if indexPath != nil {
-            if sender.state == UIGestureRecognizerState.began  {
+            if sender.state == UIGestureRecognizer.State.began  {
                 // 長押しされた場合の処
                 print("長押しされたcellのindexPath:\(String(describing: indexPath?.row))")
                 
@@ -169,7 +169,7 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
                 let imageView = (cell?.viewWithTag(10) as? UIImageView)!
                 self.makeAllThumb(filename: self.files[indexPath.row],filePath: self.filePaths[indexPath.row],rect: imageView.frame)
                 DispatchQueue.main.async {
-                    tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+                    tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.fade)
                 }
             }
 
@@ -225,7 +225,7 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
             
             let image = self.createThumbnail(path: filePath,location:percent,rect:rect)
             
-            let dataSaveImagethumb = UIImageJPEGRepresentation(image, 1.0)
+            let dataSaveImagethumb = image.jpegData(compressionQuality: 1.0)
             
 
             do {
@@ -269,7 +269,7 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
         let imageGen = AVAssetImageGenerator(asset: asset)
         let durationSeconds = CMTimeGetSeconds(asset.duration)
        
-        let midpoint = CMTimeMakeWithSeconds(durationSeconds*location, 600)
+        let midpoint = CMTimeMakeWithSeconds(durationSeconds*location, preferredTimescale: 600)
         do{
             let hafwatImage = try imageGen.copyCGImage(at: midpoint, actualTime: nil)
             let image = UIImage(cgImage: hafwatImage)
@@ -309,8 +309,13 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let player = self.storyboard?.instantiateViewController(withIdentifier: "Vplayer") as! VideoPlayerVC
         player.FilePath = filePaths[indexPath.row]
+        player.delegate = self
         self.present(player, animated: true, completion: nil)
     }
+    func playerViewControllerShouldDismiss(_ playerViewController: AVPlayerViewController) -> Bool{
+        return false
+    }
+    
 
 }
 

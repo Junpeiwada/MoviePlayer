@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , PAPasscodeViewController
     var window: UIWindow?
     var isPassCodeViewShown = false
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         let usePasscode = UserDefaults.standard.bool(forKey:"useLock")
         if (usePasscode){
             isPassCodeViewShown = true
@@ -59,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , PAPasscodeViewController
                 
                 let navi = UINavigationController.init(rootViewController: passcodeViewController!)
                 
+                navi.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.window?.rootViewController?.dismiss(animated: false, completion: nil)
                 self.window?.rootViewController?.present(navi, animated: false, completion: nil)
 
@@ -68,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , PAPasscodeViewController
                 passcodeViewController?.delegate = self
                 let navi = UINavigationController.init(rootViewController: passcodeViewController!)
 
+                navi.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.window?.rootViewController?.dismiss(animated: false, completion: nil)
                 self.window?.rootViewController?.present(navi, animated: true, completion: nil)
             }
