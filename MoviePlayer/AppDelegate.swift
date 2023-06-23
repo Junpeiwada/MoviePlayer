@@ -11,7 +11,7 @@ import UIKit
 //import SVProgressHUD
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate , PAPasscodeViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate ,PassCodeViewControllerDelegate {
 
     var window: UIWindow?
     var isPassCodeViewShown = false
@@ -53,37 +53,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate , PAPasscodeViewController
             let passcode = self.loadPassword()
             if (passcode != nil){
                 // パスコードの画面を表示する
-                let passcodeViewController = PAPasscodeViewController.init(for: PasscodeActionEnter)
-                passcodeViewController?.delegate = self
-                passcodeViewController?.passcode = passcode
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let passVC = storyboard.instantiateViewController(withIdentifier: "Passcode") as! PassCodeViewController
+                passVC.delegate = self
                 
-                let navi = UINavigationController.init(rootViewController: passcodeViewController!)
+                let navi = UINavigationController.init(rootViewController: passVC)
                 
                 navi.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.window?.rootViewController?.dismiss(animated: false, completion: nil)
                 self.window?.rootViewController?.present(navi, animated: false, completion: nil)
 
             }else{
-                // 新規に設定
-                let passcodeViewController = PAPasscodeViewController.init(for: PasscodeActionSet)
-                passcodeViewController?.delegate = self
-                let navi = UINavigationController.init(rootViewController: passcodeViewController!)
-
+//                // 新規に設定
+//                let passcodeViewController = PAPasscodeViewController.init(for: PasscodeActionSet)
+//                passcodeViewController?.delegate = self
+//                let navi = UINavigationController.init(rootViewController: passcodeViewController!)
+//
+//                navi.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+//                self.window?.rootViewController?.dismiss(animated: false, completion: nil)
+//                self.window?.rootViewController?.present(navi, animated: true, completion: nil)
+                
+                // パスコードの画面を表示する
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let passVC = storyboard.instantiateViewController(withIdentifier: "Passcode") as! PassCodeViewController
+                passVC.delegate = self
+                
+                let navi = UINavigationController.init(rootViewController: passVC)
+                
                 navi.modalPresentationStyle = UIModalPresentationStyle.fullScreen
                 self.window?.rootViewController?.dismiss(animated: false, completion: nil)
-                self.window?.rootViewController?.present(navi, animated: true, completion: nil)
+                self.window?.rootViewController?.present(navi, animated: false, completion: nil)
             }
         }else{
             self.window?.rootViewController?.dismiss(animated: false, completion: nil)
         }
     }
     
-    func paPasscodeViewControllerDidSetPasscode(_ controller: PAPasscodeViewController!) {
-        savePassword(password: controller.passcode)
+    func passcodeViewControllerDidSetPasscode(_ controller: PassCodeViewController!) {
+//        savePassword(password: controller.passcode)
         self.isPassCodeViewShown = false
         self.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
-    func paPasscodeViewControllerDidEnterPasscode(_ controller: PAPasscodeViewController!) {
+    func passcodeViewControllerDidEnterPasscode(_ controller: PassCodeViewController!) {
         // パスコードが入力された
         self.isPassCodeViewShown = false
         self.window?.rootViewController?.dismiss(animated: true, completion: nil)

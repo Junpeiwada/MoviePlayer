@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA94D6FF4E6306B5AE9AE3A4 /* Pods_MoviePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C52CE511E035108A5DA752C /* Pods_MoviePlayer.framework */; };
-		EE625E301DA2138900E85E8E /* PAPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE625E2F1DA2138900E85E8E /* PAPasscodeViewController.m */; };
+		EE67A7AE2A45872A00D301D3 /* PassCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67A7AD2A45872A00D301D3 /* PassCodeViewController.swift */; };
 		EE95CB791D742FD800A465D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95CB781D742FD800A465D7 /* AppDelegate.swift */; };
 		EE95CB7B1D742FD800A465D7 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95CB7A1D742FD800A465D7 /* VideoListViewController.swift */; };
 		EE95CB7E1D742FD800A465D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE95CB7C1D742FD800A465D7 /* Main.storyboard */; };
@@ -20,10 +19,8 @@
 
 /* Begin PBXFileReference section */
 		7C52CE511E035108A5DA752C /* Pods_MoviePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B71D6941EA71BEA515EA0AD /* Pods-MoviePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MoviePlayer/Pods-MoviePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		EE625E2A1DA2124900E85E8E /* MoviePlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoviePlayer-Bridging-Header.h"; sourceTree = "<group>"; };
-		EE625E2E1DA2138900E85E8E /* PAPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PAPasscodeViewController.h; path = Pods/PAPasscode/PAPasscode/PAPasscodeViewController.h; sourceTree = SOURCE_ROOT; };
-		EE625E2F1DA2138900E85E8E /* PAPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PAPasscodeViewController.m; path = Pods/PAPasscode/PAPasscode/PAPasscodeViewController.m; sourceTree = SOURCE_ROOT; };
+		EE67A7AD2A45872A00D301D3 /* PassCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeViewController.swift; sourceTree = "<group>"; };
 		EE95CB751D742FD800A465D7 /* MoviePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE95CB781D742FD800A465D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE95CB7A1D742FD800A465D7 /* VideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
@@ -33,7 +30,6 @@
 		EE95CB841D742FD800A465D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE95CB8A1D743CEE00A465D7 /* VideoPlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
 		EEF66C571DA0E40E005D8A78 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		F2EE165B63357B76C7BB63FE /* Pods-MoviePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoviePlayer/Pods-MoviePlayer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,22 +37,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA94D6FF4E6306B5AE9AE3A4 /* Pods_MoviePlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8DE168AFFB5A6B2E5A7AF8E3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9B71D6941EA71BEA515EA0AD /* Pods-MoviePlayer.debug.xcconfig */,
-				F2EE165B63357B76C7BB63FE /* Pods-MoviePlayer.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		A228B261A9E63204509D197C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,7 +56,6 @@
 			children = (
 				EE95CB771D742FD800A465D7 /* MoviePlayer */,
 				EE95CB761D742FD800A465D7 /* Products */,
-				8DE168AFFB5A6B2E5A7AF8E3 /* Pods */,
 				A228B261A9E63204509D197C /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -86,10 +71,9 @@
 		EE95CB771D742FD800A465D7 /* MoviePlayer */ = {
 			isa = PBXGroup;
 			children = (
-				EE625E2E1DA2138900E85E8E /* PAPasscodeViewController.h */,
-				EE625E2F1DA2138900E85E8E /* PAPasscodeViewController.m */,
 				EE95CB781D742FD800A465D7 /* AppDelegate.swift */,
 				EE95CB7A1D742FD800A465D7 /* VideoListViewController.swift */,
+				EE67A7AD2A45872A00D301D3 /* PassCodeViewController.swift */,
 				EE95CB8A1D743CEE00A465D7 /* VideoPlayerVC.swift */,
 				EE95CB7C1D742FD800A465D7 /* Main.storyboard */,
 				EE95CB811D742FD800A465D7 /* LaunchScreen.storyboard */,
@@ -108,20 +92,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE95CB871D742FD800A465D7 /* Build configuration list for PBXNativeTarget "MoviePlayer" */;
 			buildPhases = (
-				5AA7360E7D66F9DBAB7B8E0D /* [CP] Check Pods Manifest.lock */,
-				9402D736986E7BBBF5E23015 /* [CP] Check Pods Manifest.lock */,
 				EE95CB711D742FD800A465D7 /* Sources */,
 				EE95CB721D742FD800A465D7 /* Frameworks */,
 				EE95CB731D742FD800A465D7 /* Resources */,
-				C80DD4E172187F3D8DF557C4 /* [CP] Embed Pods Frameworks */,
-				994A1FEE78BFB2CEBEA24458 /* 📦 Embed Pods Frameworks */,
-				273FB675E85B1CD18C148B38 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MoviePlayer;
+			packageProductDependencies = (
+			);
 			productName = MoviePlayer;
 			productReference = EE95CB751D742FD800A465D7 /* MoviePlayer.app */;
 			productType = "com.apple.product-type.application";
@@ -132,8 +113,9 @@
 		EE95CB6D1D742FD800A465D7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = JunpeiWada;
 				TargetAttributes = {
 					EE95CB741D742FD800A465D7 = {
@@ -152,6 +134,8 @@
 				Base,
 			);
 			mainGroup = EE95CB6C1D742FD800A465D7;
+			packageReferences = (
+			);
 			productRefGroup = EE95CB761D742FD800A465D7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -174,102 +158,16 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		273FB675E85B1CD18C148B38 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoviePlayer/Pods-MoviePlayer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5AA7360E7D66F9DBAB7B8E0D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MoviePlayer-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9402D736986E7BBBF5E23015 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		994A1FEE78BFB2CEBEA24458 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoviePlayer/Pods-MoviePlayer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C80DD4E172187F3D8DF557C4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MoviePlayer/Pods-MoviePlayer-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/PAPasscode/PAPasscode.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PAPasscode.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoviePlayer/Pods-MoviePlayer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		EE95CB711D742FD800A465D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EE95CB7B1D742FD800A465D7 /* VideoListViewController.swift in Sources */,
+				EE67A7AE2A45872A00D301D3 /* PassCodeViewController.swift in Sources */,
 				EE95CB791D742FD800A465D7 /* AppDelegate.swift in Sources */,
 				EE95CB8B1D743CEE00A465D7 /* VideoPlayerVC.swift in Sources */,
 				EEF66C581DA0E40E005D8A78 /* SettingsViewController.swift in Sources */,
-				EE625E301DA2138900E85E8E /* PAPasscodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +217,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -343,7 +242,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -376,6 +275,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -394,10 +294,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -405,14 +306,16 @@
 		};
 		EE95CB881D742FD800A465D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B71D6941EA71BEA515EA0AD /* Pods-MoviePlayer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = L897K2C26B;
 				INFOPLIST_FILE = MoviePlayer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.junpeiwada.MoviePlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MoviePlayer/MoviePlayer-Bridging-Header.h";
@@ -424,14 +327,16 @@
 		};
 		EE95CB891D742FD800A465D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2EE165B63357B76C7BB63FE /* Pods-MoviePlayer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = L897K2C26B;
 				INFOPLIST_FILE = MoviePlayer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.junpeiwada.MoviePlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MoviePlayer/MoviePlayer-Bridging-Header.h";
