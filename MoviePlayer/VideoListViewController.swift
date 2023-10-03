@@ -312,9 +312,9 @@ class VideoListViewController: UITableViewController,UIGestureRecognizerDelegate
         player.delegate = self
         self.present(player, animated: true, completion: nil)
     }
-    func playerViewControllerShouldDismiss(_ playerViewController: AVPlayerViewController) -> Bool{
-        return false
-    }
+//    func playerViewControllerShouldDismiss(_ playerViewController: AVPlayerViewController) -> Bool{
+//        return false
+//    }
     
 
 }
